@@ -1,0 +1,24 @@
+<IfModule mod_rewrite.c>
+Options +Indexes
+Options +FollowSymlinks
+</IfModule>
+
+IndexIgnore */*
+
+RewriteEngine on
+
+RewriteCond %{REQUEST_URI} ^/(admin)
+RewriteRule ^admin(.+)?$ backend/web/$1 [L,PT]
+
+AddType text/css .css
+AddType text/javascript .js
+RewriteCond %{REQUEST_URI} !^public
+RewriteRule ^(.+)?$ frontend/web/$1 [L]
+
+
+# Deny accessing below extensions
+<Files ~ "(.json|.lock|.git)">
+Order allow,deny
+Deny from all
+</Files>
+
