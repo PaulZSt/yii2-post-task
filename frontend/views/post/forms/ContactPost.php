@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use kartik\datetime\DateTimePicker;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Post */
@@ -26,11 +27,14 @@ $js = "$('form').on('beforeSubmit', function(){
  });
  
 $('button').on('click', function(){
+ setTimeout(function () {
+        $('input').val('');
+        }, 1200);
     setTimeout(function () {
+        $('input').val('');
         $('div.alert').remove();
     }, 15000);
 });
-
  ";
 
 $this->registerJs($js);
@@ -55,7 +59,6 @@ $this->registerJs($js);
 
 <div class="posts-form">
 
-    <? print_r($data); ?>
 
 
     <?php $form = ActiveForm::begin(['id' => 'form2', 'action' => ""]); ?>
@@ -70,7 +73,17 @@ $this->registerJs($js);
 
     <?= $form->field($model_forms_data, 'ContactEmail')->textInput() ?>
 
-    <?= $form->field($model_queue, 'PostAt')->textInput() ?>
+    <?= $form->field($model_queue, 'PostAt')->widget(DateTimePicker::classname(), [
+        'name' => 'PostAt',
+        'value' => '18-08-2019, 14:45',
+        'options' => ['placeholder' => 'Select post time ...'],
+        'pluginOptions' => [
+            'autoclose' => true,
+            'format' => 'dd-M-yyyy hh:ii',
+            'startDate' => date('d-m-Y h:i'),
+            'todayHighlight' => true
+        ]
+    ]); ?>
 
     <div class="form-group">
         <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-success']) ?>

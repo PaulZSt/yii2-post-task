@@ -27,11 +27,14 @@ $js = "$('form').on('beforeSubmit', function(){
  });
  
 $('button').on('click', function(){
+ setTimeout(function () {
+        $('input').val('');
+        }, 1200);
     setTimeout(function () {
+        $('input').val('');
         $('div.alert').remove();
     }, 15000);
 });
-
  ";
 
 $this->registerJs($js);
