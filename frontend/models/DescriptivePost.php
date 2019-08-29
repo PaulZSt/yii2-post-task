@@ -34,6 +34,7 @@ class DescriptivePost extends \yii\db\ActiveRecord
             $this->EndAt = strtotime($this->EndAt);
             $this->StartAt = strtotime($this->StartAt);
 
+
             if ($this->StartAt < time() || $this->StartAt = null){
                 $this->StartAt = time();
             }
@@ -49,7 +50,7 @@ class DescriptivePost extends \yii\db\ActiveRecord
     {
         return [
             [['PositionDescription', 'StartAt', 'EndAt'], 'string'],
-            [['PostId', 'Salary', 'current'], 'integer'],
+            [['PostId', 'Salary'], 'integer'],
 
         ];
     }
@@ -65,7 +66,6 @@ class DescriptivePost extends \yii\db\ActiveRecord
             'Salary' => Yii::t('app', 'Salary'),
             'StartAt' => Yii::t('app', 'Start At'),
             'EndAt' => Yii::t('app', 'End At'),
-            'current' => Yii::t('app', 'current'),
         ];
     }
 

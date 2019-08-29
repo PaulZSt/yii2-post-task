@@ -22,13 +22,15 @@ class PostQueue extends \yii\db\ActiveRecord
         return 'PostQueue';
     }
 
+
+
     /**
      * {@inheritdoc}
      */
     public function rules()
     {
         return [
-            [['PostId', 'PostAt', 'NotificationQueueAt'], 'integer'],
+            [['PostId', 'PostAt', 'NotificationQueueAt'], 'string'],
         ];
     }
 
@@ -44,4 +46,8 @@ class PostQueue extends \yii\db\ActiveRecord
             'NotificationQueueAt' => Yii::t('app', 'Notification Queue At'),
         ];
     }
+
+
+
+
 }

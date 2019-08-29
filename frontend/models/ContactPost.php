@@ -25,16 +25,7 @@ class ContactPost extends \yii\db\ActiveRecord
      * {@inheritdoc}
      */
 
-    public function beforeSave($insert){
-        if (!parent::beforeSave($insert))
-            return false;
-        if ($insert) {
-            if ($this->StartAt < time()){
-                $this->StartAt = time();
-            }
-        }
-        return true;
-    }
+
 
     public function rules()
     {

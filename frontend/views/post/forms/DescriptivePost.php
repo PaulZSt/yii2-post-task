@@ -25,6 +25,10 @@ $js = "$('form').on('beforeSubmit', function(){
         });
         return false;
  });
+ 
+  setTimeout(function () {
+            $('div.alert').remove();
+        }, 15000); 
  ";
 
 $this->registerJs($js);
