@@ -14,7 +14,6 @@ class SendEmail extends Model
      */
 
 
-
     /**
      * {@inheritdoc}
      */
@@ -33,21 +32,17 @@ class SendEmail extends Model
 
         $text = '';
         foreach ($model_post as $key => $value) {
-             $text .= $key.':  ' .$value.'<br>';
+            $text .= $key . ':  ' . $value . '<br>';
         }
         return Yii::$app
             ->mailer
-            ->compose(
-            )
+            ->compose()
             ->setFrom('from@4ksoft.com')
             ->setTo('to@4ksoft.com')
             ->setSubject('Email title')
             ->setTextBody('Your task: 
-            Post at -   '. $post_at.$text
-                )
-
-
-
+            Post at -   ' . $post_at . $text
+            )
             ->send();
 
 

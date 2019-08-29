@@ -39,4 +39,3 @@ $('select[name="form_type_select"]').on('change', function() {
 
 
 
-

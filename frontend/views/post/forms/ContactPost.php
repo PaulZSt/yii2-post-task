@@ -25,9 +25,11 @@ $js = "$('form').on('beforeSubmit', function(){
         return false;
  });
  
- setTimeout(function () {
-            $('div.alert').remove();
-        }, 15000); 
+$('button').on('click', function(){
+    setTimeout(function () {
+        $('div.alert').remove();
+    }, 15000);
+});
 
  ";
 
@@ -35,23 +37,25 @@ $this->registerJs($js);
 
 ?>
 
-<?php if( Yii::$app->session->hasFlash('success') ): ?>
+<?php if (Yii::$app->session->hasFlash('success')): ?>
     <div class="alert alert-success alert-dismissible" role="alert">
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                    aria-hidden="true">&times;</span></button>
         <?php echo Yii::$app->session->getFlash('success'); ?>
     </div>
-<?php endif;?>
-<?php if( Yii::$app->session->hasFlash('error') ): ?>
+<?php endif; ?>
+<?php if (Yii::$app->session->hasFlash('error')): ?>
     <div class="alert alert-success alert-dismissible" role="alert">
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                    aria-hidden="true">&times;</span></button>
         <?php echo Yii::$app->session->getFlash('error'); ?>
     </div>
-<?php endif;?>
+<?php endif; ?>
 
 
 <div class="posts-form">
 
-    <? print_r($data);?>
+    <? print_r($data); ?>
 
 
     <?php $form = ActiveForm::begin(['id' => 'form2', 'action' => ""]); ?>

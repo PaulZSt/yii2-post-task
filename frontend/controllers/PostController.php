@@ -42,16 +42,16 @@ class PostController extends Controller
 
         if (Yii::$app->request->isAjax) {
             foreach ($forms as $formName => $form) {
-                if(isset($data[$formName])) {
+                if (isset($data[$formName])) {
                     if ($model->load($data) && $model->validate()) {
-                    $model->save();
+                        $model->save();
                     }
                     //end(explode('\\',$form->className()));
                     if ($form->load(Yii::$app->request->post())) {
                         $form->PostId = $model->id;
                         $form->save();
                     } else {
-                        $errors[] = 'Problem with '.$formName;
+                        $errors[] = 'Problem with ' . $formName;
                     }
 
                     if ($model_queue->load($data) && $model_queue->validate()) {
@@ -61,32 +61,29 @@ class PostController extends Controller
                         $errors[] = 'Problem with model_queue';
                     }
 
-                    if(!empty($errors)){
-                        Yii::$app->session->setFlash('error', "You data NOT submitted.Problem with ".(implode(",", $errors)));
-                        $errors ='';
+                    if (!empty($errors)) {
+                        Yii::$app->session->setFlash('error', "You data NOT submitted.Problem with " . (implode(",", $errors)));
+                        $errors = '';
                     } else {
                         Yii::$app->session->setFlash('success', "Your data submitted. End Email was send");
-                        SendEmail::sendEmail($data[$formName],$data['PostQueue']['PostAt']);
-                        $errors ='';
+                        SendEmail::sendEmail($data[$formName], $data['PostQueue']['PostAt']);
+                        $errors = '';
                     }
 
                 }
             }
 
-            if(isset($data['Post']['Type'])) {
+            if (isset($data['Post']['Type'])) {
                 $data['form_type_select'] = $data['Post']['Type'];
             }
-                    return $this->renderAjax('forms/'.$data['form_type_select'], [
-                        'data' => $data,
-                        'model' => $model,
-                        'model_forms_data' => $forms[$data['form_type_select']],
-                        'model_queue' => $model_queue
-                    ]);
+            return $this->renderAjax('forms/' . $data['form_type_select'], [
+                'model' => $model,
+                'model_forms_data' => $forms[$data['form_type_select']],
+                'model_queue' => $model_queue
+            ]);
 
         } else {
-
             return $this->render('index', [
-                'data' => $data,
                 'model' => $model,
                 'searchModel' => $searchModel,
                 'dataProvider' => $dataProvider,

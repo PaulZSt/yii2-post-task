@@ -26,9 +26,12 @@ $js = "$('form').on('beforeSubmit', function(){
         return false;
  });
  
-  setTimeout(function () {
-            $('div.alert').remove();
-        }, 15000); 
+$('button').on('click', function(){
+    setTimeout(function () {
+        $('div.alert').remove();
+    }, 15000);
+});
+
  ";
 
 $this->registerJs($js);
@@ -36,26 +39,23 @@ $this->registerJs($js);
 ?>
 
 
-<?php if( Yii::$app->session->hasFlash('success') ): ?>
+<?php if (Yii::$app->session->hasFlash('success')): ?>
     <div class="alert alert-success alert-dismissible" role="alert">
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                    aria-hidden="true">&times;</span></button>
         <?php echo Yii::$app->session->getFlash('success'); ?>
     </div>
-<?php endif;?>
-<?php if( Yii::$app->session->hasFlash('error') ): ?>
+<?php endif; ?>
+<?php if (Yii::$app->session->hasFlash('error')): ?>
     <div class="alert alert-success alert-dismissible" role="alert">
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                    aria-hidden="true">&times;</span></button>
         <?php echo Yii::$app->session->getFlash('error'); ?>
     </div>
-<?php endif;?>
+<?php endif; ?>
 
 
 <div class="post-form">
-
-    <? print_r($data);?>
-
-
-
 
     <? $form = ActiveForm::begin(['id' => 'form1', 'action' => ""]); ?>
 
@@ -74,7 +74,7 @@ $this->registerJs($js);
         'value' => '18-08-2019, 14:45',
         'options' => ['placeholder' => 'Select start date ...'],
         'pluginOptions' => [
-            'autoclose'=>true,
+            'autoclose' => true,
             'format' => 'dd-M-yyyy hh:ii',
             'startDate' => date('d-m-Y h:i'), //earlier date
             'todayHighlight' => true
@@ -86,10 +86,10 @@ $this->registerJs($js);
         'value' => '18-08-2019, 14:45',
         'options' => ['placeholder' => 'Select end date ...'],
         'pluginOptions' => [
-            'autoclose'=>true,
+            'autoclose' => true,
             'format' => 'dd-M-yyyy hh:ii',
             'startDate' => date('d-m-Y h:i'),
-            'endDate' => date('d-m-Y h:i', time() + 60*60*24*31*3), //last posible date (+3 month)
+            'endDate' => date('d-m-Y h:i', time() + 60 * 60 * 24 * 31 * 3), //last posible date (+3 month)
             'todayHighlight' => true
         ]
     ]); ?>
@@ -100,7 +100,7 @@ $this->registerJs($js);
         'value' => '18-08-2019, 14:45',
         'options' => ['placeholder' => 'Select post time ...'],
         'pluginOptions' => [
-            'autoclose'=>true,
+            'autoclose' => true,
             'format' => 'dd-M-yyyy hh:ii',
             'startDate' => date('d-m-Y h:i'),
             'todayHighlight' => true
